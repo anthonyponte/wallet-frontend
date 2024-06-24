@@ -7,30 +7,28 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Categoria {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  private Integer idCategoria;
 
   private String descripcion;
 
   public Categoria() {}
 
-  public Categoria(Integer id, String descripcion) {
-    this.id = id;
+  public Categoria(String descripcion) {
     this.descripcion = descripcion;
   }
 
-  public Integer getId() {
-    return this.id;
+  public Integer getIdCategoria() {
+    return idCategoria;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setIdCategoria(Integer idCategoria) {
+    this.idCategoria = idCategoria;
   }
 
   public String getDescripcion() {
-    return this.descripcion;
+    return descripcion;
   }
 
   public void setDescripcion(String descripcion) {
@@ -39,6 +37,6 @@ public class Categoria {
 
   @Override
   public String toString() {
-    return "{" + " id='" + getId() + "'" + ", descripcion='" + getDescripcion() + "'" + "}";
+    return "Categoria{" + "idCategoria=" + idCategoria + ", descripcion=" + descripcion + '}';
   }
 }

@@ -1,18 +1,17 @@
 package com.anthonyponte.wallet.service;
 
 import com.anthonyponte.wallet.model.Categoria;
-import com.anthonyponte.wallet.repository.CategoryRepository;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import com.anthonyponte.wallet.repository.CategoriaRepository;
 
 @Service
-public class CategoryService {
+public class CategoriaService {
+  private final CategoriaRepository repository;
 
-  private final CategoryRepository repository;
-
-  public CategoryService(CategoryRepository repository) {
+  public CategoriaService(CategoriaRepository repository) {
     this.repository = repository;
   }
 
@@ -20,7 +19,15 @@ public class CategoryService {
     return repository.readAll();
   }
 
+  public Categoria read(int idCategoria) {
+    return repository.read(idCategoria);
+  }
+
   public Categoria save(Categoria categoria) {
     return repository.save(categoria);
+  }
+
+  public void delete(int idCategoria) {
+    repository.deleteById(idCategoria);
   }
 }

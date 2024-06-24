@@ -5,14 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.anthonyponte.wallet.model.Cuenta;
-import com.anthonyponte.wallet.repository.AccountRepository;
+import com.anthonyponte.wallet.repository.CuentaRepository;
 
 @Service
-public class AccountService {
+public class CuentaService {
+  private final CuentaRepository repository;
 
-  private final AccountRepository repository;
-
-  public AccountService(AccountRepository repository) {
+  public CuentaService(CuentaRepository repository) {
     this.repository = repository;
   }
 

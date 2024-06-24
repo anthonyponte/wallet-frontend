@@ -7,10 +7,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Cuenta {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  private Integer idCuenta;
 
   private String nombre;
   private double inicial;
@@ -20,9 +19,7 @@ public class Cuenta {
 
   public Cuenta() {}
 
-  public Cuenta(
-      Integer id, String nombre, double inicial, double ingresos, double gastos, double total) {
-    this.id = id;
+  public Cuenta(String nombre, double inicial, double ingresos, double gastos, double total) {
     this.nombre = nombre;
     this.inicial = inicial;
     this.ingresos = ingresos;
@@ -30,16 +27,16 @@ public class Cuenta {
     this.total = total;
   }
 
-  public Integer getId() {
-    return this.id;
+  public Integer getIdCuenta() {
+    return idCuenta;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setIdCuenta(Integer idCuenta) {
+    this.idCuenta = idCuenta;
   }
 
   public String getNombre() {
-    return this.nombre;
+    return nombre;
   }
 
   public void setNombre(String nombre) {
@@ -47,7 +44,7 @@ public class Cuenta {
   }
 
   public double getInicial() {
-    return this.inicial;
+    return inicial;
   }
 
   public void setInicial(double inicial) {
@@ -55,7 +52,7 @@ public class Cuenta {
   }
 
   public double getIngresos() {
-    return this.ingresos;
+    return ingresos;
   }
 
   public void setIngresos(double ingresos) {
@@ -63,7 +60,7 @@ public class Cuenta {
   }
 
   public double getGastos() {
-    return this.gastos;
+    return gastos;
   }
 
   public void setGastos(double gastos) {
@@ -71,7 +68,7 @@ public class Cuenta {
   }
 
   public double getTotal() {
-    return this.total;
+    return total;
   }
 
   public void setTotal(double total) {
@@ -80,25 +77,19 @@ public class Cuenta {
 
   @Override
   public String toString() {
-    return "{"
-        + " id='"
-        + getId()
-        + "'"
-        + ", nombre='"
-        + getNombre()
-        + "'"
-        + ", inicial='"
-        + getInicial()
-        + "'"
-        + ", ingresos='"
-        + getIngresos()
-        + "'"
-        + ", gastos='"
-        + getGastos()
-        + "'"
-        + ", total='"
-        + getTotal()
-        + "'"
-        + "}";
+    return "Cuenta{"
+        + "idCuenta="
+        + idCuenta
+        + ", nombre="
+        + nombre
+        + ", inicial="
+        + inicial
+        + ", ingresos="
+        + ingresos
+        + ", gastos="
+        + gastos
+        + ", total="
+        + total
+        + '}';
   }
 }

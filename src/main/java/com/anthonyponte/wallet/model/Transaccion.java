@@ -4,34 +4,42 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import java.util.Date;
 
 @Entity
 public class Transaccion {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  private Integer idTransaccion;
 
-  @ManyToOne private Categoria categoria;
+  @OneToOne
+  @JoinColumn(name = "idCategoria")
+  private Categoria categoria;
+
   private Date fecha;
   private String descripcion;
-  @ManyToOne private Tipo tipo;
+
+  @OneToOne
+  @JoinColumn(name = "idTipo")
+  private Tipo tipo;
+
   private double importe;
-  @ManyToOne private Cuenta cuenta;
+
+  @OneToOne
+  @JoinColumn(name = "idCuenta")
+  private Cuenta cuenta;
 
   public Transaccion() {}
 
   public Transaccion(
-      Integer id,
       Categoria categoria,
       Date fecha,
       String descripcion,
       Tipo tipo,
       double importe,
       Cuenta cuenta) {
-    this.id = id;
     this.categoria = categoria;
     this.fecha = fecha;
     this.descripcion = descripcion;
@@ -40,16 +48,16 @@ public class Transaccion {
     this.cuenta = cuenta;
   }
 
-  public Integer getId() {
-    return this.id;
+  public Integer getIdTransaccion() {
+    return idTransaccion;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setIdTransaccion(Integer idTransaccion) {
+    this.idTransaccion = idTransaccion;
   }
 
   public Categoria getCategoria() {
-    return this.categoria;
+    return categoria;
   }
 
   public void setCategoria(Categoria categoria) {
@@ -57,7 +65,7 @@ public class Transaccion {
   }
 
   public Date getFecha() {
-    return this.fecha;
+    return fecha;
   }
 
   public void setFecha(Date fecha) {
@@ -65,7 +73,7 @@ public class Transaccion {
   }
 
   public String getDescripcion() {
-    return this.descripcion;
+    return descripcion;
   }
 
   public void setDescripcion(String descripcion) {
@@ -73,7 +81,7 @@ public class Transaccion {
   }
 
   public Tipo getTipo() {
-    return this.tipo;
+    return tipo;
   }
 
   public void setTipo(Tipo tipo) {
@@ -81,7 +89,7 @@ public class Transaccion {
   }
 
   public double getImporte() {
-    return this.importe;
+    return importe;
   }
 
   public void setImporte(double importe) {
@@ -89,7 +97,7 @@ public class Transaccion {
   }
 
   public Cuenta getCuenta() {
-    return this.cuenta;
+    return cuenta;
   }
 
   public void setCuenta(Cuenta cuenta) {
@@ -98,28 +106,21 @@ public class Transaccion {
 
   @Override
   public String toString() {
-    return "{"
-        + " id='"
-        + getId()
-        + "'"
-        + ", categoria='"
-        + getCategoria()
-        + "'"
-        + ", fecha='"
-        + getFecha()
-        + "'"
-        + ", descripcion='"
-        + getDescripcion()
-        + "'"
-        + ", tipo='"
-        + getTipo()
-        + "'"
-        + ", importe='"
-        + getImporte()
-        + "'"
-        + ", cuenta='"
-        + getCuenta()
-        + "'"
-        + "}";
+    return "Transaccion{"
+        + "idTransaccion="
+        + idTransaccion
+        + ", categoria="
+        + categoria
+        + ", fecha="
+        + fecha
+        + ", descripcion="
+        + descripcion
+        + ", tipo="
+        + tipo
+        + ", importe="
+        + importe
+        + ", cuenta="
+        + cuenta
+        + '}';
   }
 }
