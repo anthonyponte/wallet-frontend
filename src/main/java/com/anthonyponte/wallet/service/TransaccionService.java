@@ -1,35 +1,43 @@
+/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
-import com.anthonyponte.wallet.model.Categoria;
-import com.anthonyponte.wallet.model.Tipo;
-import java.util.List;
+import com.anthonyponte.wallet.entity.Transaccion;
+import com.anthonyponte.wallet.repository.ITransaccionRepository;
+import java.util.Optional;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.stereotype.Service;
+/**
+ * @author Anthony Ponte <anthonyponte.com>
+ */
+@Component
+public class TransaccionService implements ITransaccionService<Transaccion> {
 
-import com.anthonyponte.wallet.model.Transaccion;
-import com.anthonyponte.wallet.repository.TransaccionRepository;
+  @Autowired private ITransaccionRepository _transaccionRepository;
 
-@Service
-public class TransaccionService {
-  private final TransaccionRepository repository;
-
-  public TransaccionService(TransaccionRepository repository) {
-    this.repository = repository;
+  @Override
+  public Iterable<Transaccion> getAll() {
+    return _transaccionRepository.findAll();
   }
 
-  public List<Transaccion> readAll(int idCuenta) {
-    return repository.readAll(idCuenta);
+  @Override
+  public Transaccion getById(Integer id) {
+    Optional<Transaccion> opt = _transaccionRepository.findById(id);
+    return opt.get();
   }
 
-  public Transaccion save(Transaccion transaccion) {
-    return repository.save(transaccion);
+  @Override
+  public Transaccion create(Transaccion entity) {
+    return _transaccionRepository.save(entity);
   }
 
-  public List<Tipo> readTypes() {
-    return repository.readTypes();
+  @Override
+  public void delete(Integer id) {
+    _transaccionRepository.deleteById(id);
   }
 
-  public List<Categoria> readCategories() {
-    return repository.readCategories();
+  @Override
+  public Iterable<Transaccion> getAll(Integer id) {
+    return _transaccionRepository.findAll(id);
   }
 }

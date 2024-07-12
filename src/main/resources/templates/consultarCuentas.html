@@ -23,7 +23,7 @@
         <div th:each="cuenta : ${listCuentas}" class="col">
           <div class="card">
             <div class="card-header">
-              <a th:href="@{/transacciones(idCuenta=${cuenta.idCuenta})}">
+              <a th:href="@{/transacciones/{idCuenta}(idCuenta=${cuenta.idCuenta})}">
                 <h5 th:text="${cuenta.nombre}"></h5>
               </a>
             </div>
@@ -50,11 +50,11 @@
               </div>
             </div>
             <div class="card-footer">
-              <a th:href="@{/transacciones(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-success"><i
+              <a th:href="@{/transacciones/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-success"><i
                   class="bi bi-table"></i> Transacciones</a>
-              <a th:href="@{/cuenta/editar(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-warning"><i
+              <a th:href="@{/cuenta/editar/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-warning"><i
                   class="bi bi-pencil-fill"></i></a>
-              <a th:href="@{/cuenta/eliminar(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-danger"><i
+              <a th:href="@{/cuenta/eliminar/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-danger"><i
                   class="bi bi-trash-fill"></i></a>
             </div>
           </div>

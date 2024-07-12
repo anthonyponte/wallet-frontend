@@ -1,33 +1,38 @@
+/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
-import java.util.List;
+import com.anthonyponte.wallet.entity.Cuenta;
+import com.anthonyponte.wallet.repository.ICuentaRepository;
+import java.util.Optional;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.stereotype.Service;
+/**
+ * @author Anthony Ponte <anthonyponte.com>
+ */
+@Component
+public class CuentaService implements ICuentaService<Cuenta> {
 
-import com.anthonyponte.wallet.model.Cuenta;
-import com.anthonyponte.wallet.repository.CuentaRepository;
+  @Autowired private ICuentaRepository _cuentaRepository;
 
-@Service
-public class CuentaService {
-  private final CuentaRepository repository;
-
-  public CuentaService(CuentaRepository repository) {
-    this.repository = repository;
+  @Override
+  public Iterable<Cuenta> getAll() {
+    return _cuentaRepository.findAll();
   }
 
-  public List<Cuenta> readAll() {
-    return repository.readAll();
+  @Override
+  public Cuenta getById(Integer id) {
+    Optional<Cuenta> opt = _cuentaRepository.findById(id);
+    return opt.get();
   }
 
-  public Cuenta read(int id) {
-    return repository.read(id);
+  @Override
+  public Cuenta create(Cuenta entity) {
+    return _cuentaRepository.save(entity);
   }
 
-  public Cuenta save(Cuenta cuenta) {
-    return repository.save(cuenta);
-  }
-
-  public void delete(int id) {
-    repository.deleteById(id);
+  @Override
+  public void delete(Integer id) {
+    _cuentaRepository.deleteById(id);
   }
 }

@@ -1,12 +1,18 @@
-package com.anthonyponte.wallet.model;
+package com.anthonyponte.wallet.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * @author Anthony Ponte <anthonyponte.com>
+ */
 @Entity
 public class Cuenta {
+
+  public static long serialVersionUID = 1L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer idCuenta;

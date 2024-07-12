@@ -1,31 +1,38 @@
+/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
-import com.anthonyponte.wallet.model.Tipo;
-import java.util.List;
-import org.springframework.stereotype.Service;
-import com.anthonyponte.wallet.repository.TipoRepository;
+import com.anthonyponte.wallet.entity.Tipo;
+import com.anthonyponte.wallet.repository.ITipoRepository;
+import java.util.Optional;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Service
-public class TipoService {
-  private final TipoRepository repository;
+/**
+ * @author Anthony Ponte <anthonyponte.com>
+ */
+@Component
+public class TipoService implements ITipoService<Tipo> {
 
-  public TipoService(TipoRepository repository) {
-    this.repository = repository;
+  @Autowired private ITipoRepository _tipoRepository;
+
+  @Override
+  public Iterable<Tipo> getAll() {
+    return _tipoRepository.findAll();
   }
 
-  public List<Tipo> readAll() {
-    return repository.readAll();
+  @Override
+  public Tipo getById(Integer id) {
+    Optional<Tipo> opt = _tipoRepository.findById(id);
+    return opt.get();
   }
 
-  public Tipo read(int id) {
-    return repository.read(id);
+  @Override
+  public Tipo create(Tipo entity) {
+    return _tipoRepository.save(entity);
   }
 
-  public Tipo save(Tipo tipo) {
-    return repository.save(tipo);
-  }
-
-  public void delete(int id) {
-    repository.deleteById(id);
+  @Override
+  public void delete(Integer id) {
+    _tipoRepository.deleteById(id);
   }
 }

@@ -1,4 +1,4 @@
-package com.anthonyponte.wallet.model;
+package com.anthonyponte.wallet.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,9 +7,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * @author Anthony Ponte <anthonyponte.com>
+ */
 @Entity
 public class Transaccion {
+
+  public static long serialVersionUID = 1L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer idTransaccion;
@@ -18,6 +25,7 @@ public class Transaccion {
   @JoinColumn(name = "idCategoria")
   private Categoria categoria;
 
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date fecha;
   private String descripcion;
 

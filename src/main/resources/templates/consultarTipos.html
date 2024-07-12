@@ -37,9 +37,9 @@
                   <td th:text="${tipo.idTipo}"></td>
                   <td th:text="${tipo.descripcion}"></td>
                   <td>
-                    <a th:href="@{/tipo/editar(idTipo=${tipo.idTipo})}" type="button" class="btn btn-warning"><i
+                    <a th:href="@{/tipo/editar/{idTipo}(idTipo=${tipo.idTipo})}" type="button" class="btn btn-warning"><i
                         class="bi bi-pencil-fill"></i></a>
-                    <a th:href="@{/tipo/eliminar(idTipo=${tipo.idTipo})}" type="button" class="btn btn-danger"><i
+                    <a th:href="@{/tipo/eliminar/{idTipo}(idTipo=${tipo.idTipo})}" type="button" class="btn btn-danger"><i
                         class="bi bi-trash-fill"></i></a>
                   </td>
                 </tr>

@@ -1,0 +1,53 @@
+package com.anthonyponte.wallet.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+/**
+ * @author Anthony Ponte <anthonyponte.com>
+ */
+@Entity
+public class Tipo {
+
+  public static long serialVersionUID = 1L;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer idTipo;
+
+  private String descripcion;
+
+  public Tipo() {}
+
+  public Tipo(Integer idTipo, String descripcion) {
+    this.idTipo = idTipo;
+    this.descripcion = descripcion;
+  }
+
+  public Tipo(String descripcion) {
+    this.descripcion = descripcion;
+  }
+
+  public Integer getIdTipo() {
+    return idTipo;
+  }
+
+  public void setIdTipo(Integer idTipo) {
+    this.idTipo = idTipo;
+  }
+
+  public String getDescripcion() {
+    return descripcion;
+  }
+
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
+
+  @Override
+  public String toString() {
+    return "Tipo{" + "idTipo=" + idTipo + ", descripcion=" + descripcion + '}';
+  }
+}

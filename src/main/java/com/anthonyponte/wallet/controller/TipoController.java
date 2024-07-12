@@ -1,24 +1,30 @@
 package com.anthonyponte.wallet.controller;
 
-import com.anthonyponte.wallet.model.Tipo;
-import com.anthonyponte.wallet.service.TipoService;
+import com.anthonyponte.wallet.entity.Tipo;
+import com.anthonyponte.wallet.service.ITipoService;
+import com.google.common.collect.Lists;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * @author Anthony Ponte <anthonyponte.com>
+ */
 @Controller
 public class TipoController {
-  @Autowired private TipoService service;
+
+  @Autowired private ITipoService<Tipo> service;
 
   @GetMapping("/tipos")
   public String consultar(Model model) {
-    List<Tipo> listTipos = service.readAll();
+    List<Tipo> listTipos = Lists.newArrayList(service.getAll());
     model.addAttribute("listTipos", listTipos);
     return "consultarTipos";
   }
@@ -34,22 +40,23 @@ public class TipoController {
     if (result.hasErrors()) {
       return "registrarTipo";
     }
-    service.save(tipo);
+    service.create(tipo);
     attributes.addFlashAttribute(
-        "textAlertSuccess", "Se guardo el tipo '" + tipo.getIdTipo()+ "'");
+        "textAlertSuccess", "Se guardo el tipo '" + tipo.getIdTipo() + "'");
     return "redirect:/tipos";
   }
 
-  @RequestMapping("/tipo/editar")
-  public String editar(int idTipo, Model model) {
-    Tipo tipo = service.read(idTipo);
+  @GetMapping("/tipo/editar/{idTipo}")
+  public String editar(@PathVariable("idTipo") Integer idTipo, Model model) {
+    Tipo tipo = service.getById(idTipo);
     model.addAttribute("tipo", tipo);
     return "registrarTipo";
   }
 
-  @RequestMapping("/tipo/eliminar")
-  public String eliminar(int idTipo, Model model) {
+  @GetMapping("/tipo/eliminar/{idTipo}")
+  public String eliminar(@PathVariable("idTipo") Integer idTipo, RedirectAttributes attr) {
     service.delete(idTipo);
+    attr.addFlashAttribute("textAlertSuccess", "Se elimino el tipo " + idTipo);
     return "redirect:/tipos";
   }
 }

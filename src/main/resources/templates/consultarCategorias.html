@@ -38,9 +38,9 @@
                   <td th:text="${categoria.idCategoria}"></td>
                   <td th:text="${categoria.descripcion}"></td>
                   <td>
-                    <a th:href="@{/categoria/editar(idCategoria=${categoria.idCategoria})}" type="button" class="btn btn-warning"><i
+                    <a th:href="@{/categoria/editar/{idCategoria}(idCategoria=${categoria.idCategoria})}" type="button" class="btn btn-warning"><i
                         class="bi bi-pencil-fill"></i></a>
-                    <a th:href="@{/categoria/eliminar(idCategoria=${categoria.idCategoria})}" type="button" class="btn btn-danger"><i
+                    <a th:href="@{/categoria/eliminar/{idCategoria}(idCategoria=${categoria.idCategoria})}" type="button" class="btn btn-danger"><i
                         class="bi bi-trash-fill"></i></a>
                   </td>
                 </tr>

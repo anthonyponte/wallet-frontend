@@ -1,33 +1,38 @@
+/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
-import com.anthonyponte.wallet.model.Categoria;
+import com.anthonyponte.wallet.entity.Categoria;
+import com.anthonyponte.wallet.repository.ICategoriaRepository;
+import java.util.Optional;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+/**
+ * @author Anthony Ponte <anthonyponte.com>
+ */
+@Component
+public class CategoriaService implements ICategoriaService<Categoria> {
 
-import org.springframework.stereotype.Service;
-import com.anthonyponte.wallet.repository.CategoriaRepository;
+  @Autowired private ICategoriaRepository _categoriaRepository;
 
-@Service
-public class CategoriaService {
-  private final CategoriaRepository repository;
-
-  public CategoriaService(CategoriaRepository repository) {
-    this.repository = repository;
+  @Override
+  public Iterable<Categoria> getAll() {
+    return _categoriaRepository.findAll();
   }
 
-  public List<Categoria> readAll() {
-    return repository.readAll();
+  @Override
+  public Categoria getById(Integer id) {
+    Optional<Categoria> opt = _categoriaRepository.findById(id);
+    return opt.get();
   }
 
-  public Categoria read(int idCategoria) {
-    return repository.read(idCategoria);
+  @Override
+  public Categoria create(Categoria entity) {
+    return _categoriaRepository.save(entity);
   }
 
-  public Categoria save(Categoria categoria) {
-    return repository.save(categoria);
-  }
-
-  public void delete(int idCategoria) {
-    repository.deleteById(idCategoria);
+  @Override
+  public void delete(Integer id) {
+    _categoriaRepository.deleteById(id);
   }
 }

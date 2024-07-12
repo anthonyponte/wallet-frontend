@@ -23,11 +23,7 @@
             <h5>Nueva cuenta</h5>
           </div>
           <div class="card-body">
-            <div class="form-floating mb-3">
-              <input th:field="*{idCuenta}" type="text" class="form-control" id="txtIdCuenta" name="txtIdCuenta"
-                placeholder="Id" disabled />
-              <label for="txtIdCuenta">Id</label>
-            </div>
+            <input th:field="*{idCuenta}" type="hidden"/>
             <div class="form-floating mb-3">
               <input th:field="*{nombre}" type="text" class="form-control" id="txtNombre" name="txtNombre"
                 placeholder="Nombre" required />

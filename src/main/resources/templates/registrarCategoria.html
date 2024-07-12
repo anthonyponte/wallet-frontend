@@ -23,11 +23,7 @@
             <h5>Nueva categoria</h5>
           </div>
           <div class="card-body">
-            <div class="form-floating mb-3">
-              <input th:field="*{idCategoria}" type="text" class="form-control" id="txtIdCategoria" name="txtIdCategoria"
-                placeholder="Id" disabled />
-              <label for="txtIdCategoria">Id</label>
-            </div>
+            <input th:field="*{idCategoria}" type="hidden"/>
             <div class="form-floating">
               <input th:field="*{descripcion}" type="text" class="form-control" id="txtDescripcion"
                 name="txtDescripcion" placeholder="Descripcion" required />
