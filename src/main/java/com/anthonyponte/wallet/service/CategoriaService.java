@@ -6,6 +6,8 @@ import com.anthonyponte.wallet.repository.ICategoriaRepository;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @author Anthony Ponte <anthonyponte.com>
@@ -34,5 +36,10 @@ public class CategoriaService implements ICategoriaService<Categoria> {
   @Override
   public void delete(Integer id) {
     _categoriaRepository.deleteById(id);
+  }
+
+  @Override
+  public Page<Categoria> getAll(Pageable pageable) {
+    return _categoriaRepository.findAll(pageable);
   }
 }

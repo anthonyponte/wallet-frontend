@@ -6,6 +6,8 @@ import com.anthonyponte.wallet.repository.ICuentaRepository;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @author Anthony Ponte <anthonyponte.com>
@@ -34,5 +36,10 @@ public class CuentaService implements ICuentaService<Cuenta> {
   @Override
   public void delete(Integer id) {
     _cuentaRepository.deleteById(id);
+  }
+
+  @Override
+  public Page<Cuenta> getAll(Pageable pageable) {
+    return _cuentaRepository.findAll(pageable);
   }
 }

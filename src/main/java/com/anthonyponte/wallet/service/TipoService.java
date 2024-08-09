@@ -6,6 +6,8 @@ import com.anthonyponte.wallet.repository.ITipoRepository;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @author Anthony Ponte <anthonyponte.com>
@@ -34,5 +36,10 @@ public class TipoService implements ITipoService<Tipo> {
   @Override
   public void delete(Integer id) {
     _tipoRepository.deleteById(id);
+  }
+
+  @Override
+  public Page<Tipo> getAll(Pageable pageable) {
+    return _tipoRepository.findAll(pageable);
   }
 }

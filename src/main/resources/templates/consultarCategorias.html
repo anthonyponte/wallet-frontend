@@ -48,6 +48,14 @@
             </table>
           </div>
         </div>
+        <div class="card-footer">
+          <nav aria-label="Paginacion">
+            <ul class="pagination">
+              <li class="page-item"><a th:href="@{/categorias(page=${listCategorias.number - 1})}" class="page-link" href="#">Anterior</a></li>
+              <li class="page-item"><a th:href="@{/categorias(page=${listCategorias.number + 1})}" class="page-link" href="#">Siguiente</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </main>
