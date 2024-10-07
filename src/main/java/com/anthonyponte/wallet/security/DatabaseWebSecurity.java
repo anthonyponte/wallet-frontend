@@ -1,0 +1,39 @@
+package com.anthonyponte.wallet.security;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class DatabaseWebSecurity {
+
+    @Bean
+    UserDetailsManager users(DataSource source) {
+        JdbcUserDetailsManager users = new JdbcUserDetailsManager(source);
+        users.setUsersByUsernameQuery("SELECT username, password, estado correo "
+                + "FROM usuario "
+                + "WHERE username = ?");
+        users.setAuthoritiesByUsernameQuery("SELECT u.username, p.descripcion "
+                + "FROM usuario_perfil up "
+                + "INNER JOIN usuario u ON u.id_usuario = up.id_usuario "
+                + "INNER JOIN perfil p ON p.id_perfil = up.id_perfil "
+                + "WHERE u.username = ?");
+        return users;
+    }
+
+    @Bean
+    SecurityFilterChain filter(HttpSecurity security) throws Exception {
+        security.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/cuenta/**", "/transacciones/**").permitAll()
+                .anyRequest().authenticated());
+        security.formLogin(form -> form.permitAll());
+        return security.build();
+    }
+}
