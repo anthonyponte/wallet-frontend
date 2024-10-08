@@ -31,7 +31,11 @@ public class DatabaseWebSecurity {
     @Bean
     SecurityFilterChain filter(HttpSecurity security) throws Exception {
         security.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/cuenta/**", "/transacciones/**").permitAll()
+                .requestMatchers("/", "/cuenta/**").permitAll()
+                .requestMatchers("/transacciones/**", "/transaccion/**").permitAll()
+                .requestMatchers("/", "/cuenta/**", "/transacciones/**").hasAnyAuthority("USUARIO")
+                .requestMatchers("/categorias/**", "/categoria/**", "/tipo/**").hasAnyAuthority("ADMINISTRADOR")
+                .requestMatchers("/tipos/**", "/tipo/**").hasAnyAuthority("ADMINISTRADOR")
                 .anyRequest().authenticated());
         security.formLogin(form -> form.permitAll());
         return security.build();
