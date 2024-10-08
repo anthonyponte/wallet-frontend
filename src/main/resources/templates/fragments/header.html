@@ -4,9 +4,9 @@
             aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" th:href="@{/}">Cuentas</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/categorias}">Categorias</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/tipos}">Tipos</a></li>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR', 'USUARIO')"><a class="nav-link" th:href="@{/}">Cuentas</a></li>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')"><a class="nav-link" th:href="@{/categorias}">Categorias</a></li>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')"><a class="nav-link" th:href="@{/tipos}">Tipos</a></li>
             </ul>
             <a class="btn btn-primary" th:href="@{/logout}">Cerrar Sesion</a>
         </div>
