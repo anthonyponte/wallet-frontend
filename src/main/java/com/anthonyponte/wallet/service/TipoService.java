@@ -15,7 +15,8 @@ import org.springframework.data.domain.Pageable;
 @Component
 public class TipoService implements ITipoService<Tipo> {
 
-  @Autowired private ITipoRepository _tipoRepository;
+  @Autowired
+  private ITipoRepository _tipoRepository;
 
   @Override
   public Iterable<Tipo> getAll() {

@@ -13,7 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Component
 public class TransaccionService implements ITransaccionService<Transaccion> {
 
-  @Autowired private ITransaccionRepository _transaccionRepository;
+  @Autowired
+  private ITransaccionRepository _transaccionRepository;
 
   @Override
   public Iterable<Transaccion> getAll() {

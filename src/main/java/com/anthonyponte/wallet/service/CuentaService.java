@@ -15,7 +15,8 @@ import org.springframework.data.domain.Pageable;
 @Component
 public class CuentaService implements ICuentaService<Cuenta> {
 
-  @Autowired private ICuentaRepository _cuentaRepository;
+  @Autowired
+  private ICuentaRepository _cuentaRepository;
 
   @Override
   public Iterable<Cuenta> getAll() {

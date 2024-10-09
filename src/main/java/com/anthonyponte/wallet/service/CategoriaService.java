@@ -15,7 +15,8 @@ import org.springframework.data.domain.Pageable;
 @Component
 public class CategoriaService implements ICategoriaService<Categoria> {
 
-  @Autowired private ICategoriaRepository _categoriaRepository;
+  @Autowired
+  private ICategoriaRepository _categoriaRepository;
 
   @Override
   public Iterable<Categoria> getAll() {
