@@ -8,7 +8,11 @@
                 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')"><a class="nav-link" th:href="@{/categorias}">Categorias</a></li>
                 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')"><a class="nav-link" th:href="@{/tipos}">Tipos</a></li>
             </ul>
-            <a class="btn btn-primary" th:href="@{/logout}">Cerrar Sesion</a>
+            <form class="form-inline">
+                <span class="navbar-text" th:if="${session.usuario != null}" th:text="${session.usuario.primerNombre}"></span>
+                <a class="btn btn-primary btn-sm" th:href="@{/index}"><i class="bi bi-box-arrow-right"></i> Ingresar</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/logout}"><i class="bi bi-box-arrow-left"></i> Cerrar Sesion</a>
+            </form>
         </div>
     </div>
 </nav>
