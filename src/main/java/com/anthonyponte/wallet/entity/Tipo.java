@@ -5,12 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Entity
 public class Tipo {
-
   public static long serialVersionUID = 1L;
 
   @Id
@@ -19,7 +15,8 @@ public class Tipo {
 
   private String descripcion;
 
-  public Tipo() {}
+  public Tipo() {
+  }
 
   public Tipo(Integer idTipo, String descripcion) {
     this.idTipo = idTipo;

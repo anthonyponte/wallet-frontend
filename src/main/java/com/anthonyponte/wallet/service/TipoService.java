@@ -9,12 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Component
 public class TipoService implements ITipoService<Tipo> {
-
   @Autowired
   private ITipoRepository _tipoRepository;
 

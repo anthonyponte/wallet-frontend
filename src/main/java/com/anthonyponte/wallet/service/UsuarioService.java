@@ -10,7 +10,6 @@ import com.anthonyponte.wallet.repository.IUsuarioRepository;
 
 @Component
 public class UsuarioService implements IUsuarioService<Usuario> {
-
     @Autowired
     private IUsuarioRepository repository;
 

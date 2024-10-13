@@ -3,10 +3,6 @@ package com.anthonyponte.wallet.service;
 
 import org.springframework.stereotype.Service;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- * @param <T>
- */
 @Service
 public interface ITransaccionService<T> {
   Iterable<T> getAll();

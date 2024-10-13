@@ -14,13 +14,10 @@ import com.anthonyponte.wallet.service.ITipoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Controller
 public class TipoController {
-
-  @Autowired private ITipoService<Tipo> service;
+  @Autowired
+  private ITipoService<Tipo> service;
 
   @GetMapping("/tipos")
   public String consultar(Model model, Pageable pageable) {

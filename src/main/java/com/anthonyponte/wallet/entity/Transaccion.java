@@ -9,13 +9,9 @@ import jakarta.persistence.OneToOne;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Entity
 public class Transaccion {
-
-  public static long serialVersionUID = 1L;
+  public static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +35,8 @@ public class Transaccion {
   @JoinColumn(name = "idCuenta")
   private Cuenta cuenta;
 
-  public Transaccion() {}
+  public Transaccion() {
+  }
 
   public Transaccion(
       Categoria categoria,

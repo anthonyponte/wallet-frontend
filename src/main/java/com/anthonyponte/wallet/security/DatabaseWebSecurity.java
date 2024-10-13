@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -15,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class DatabaseWebSecurity {
 
     @Bean
-    UserDetailsManager users(DataSource source) {
+    UserDetailsManager getUserDetailsManager(DataSource source) {
         JdbcUserDetailsManager users = new JdbcUserDetailsManager(source);
         users.setUsersByUsernameQuery("SELECT username, password, estado correo "
                 + "FROM usuario "
@@ -29,8 +31,9 @@ public class DatabaseWebSecurity {
     }
 
     @Bean
-    SecurityFilterChain filter(HttpSecurity security) throws Exception {
+    SecurityFilterChain getSecurityFilterChain(HttpSecurity security) throws Exception {
         security.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/usuario/**").permitAll()
                 .requestMatchers("/", "/cuenta/**").permitAll()
                 .requestMatchers("/transacciones/**", "/transaccion/**").permitAll()
                 .requestMatchers("/", "/cuenta/**", "/transacciones/**").hasAnyAuthority("USUARIO")
@@ -39,5 +42,10 @@ public class DatabaseWebSecurity {
                 .anyRequest().authenticated());
         security.formLogin(form -> form.permitAll());
         return security.build();
+    }
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

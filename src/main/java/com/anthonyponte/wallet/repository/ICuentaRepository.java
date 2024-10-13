@@ -5,8 +5,6 @@ import com.anthonyponte.wallet.entity.Cuenta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Repository
-public interface ICuentaRepository extends JpaRepository<Cuenta, Integer> {}
+public interface ICuentaRepository extends JpaRepository<Cuenta, Integer> {
+}

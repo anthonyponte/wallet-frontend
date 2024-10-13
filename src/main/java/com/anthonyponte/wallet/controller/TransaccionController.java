@@ -20,16 +20,16 @@ import com.anthonyponte.wallet.service.ITipoService;
 import com.anthonyponte.wallet.service.ICuentaService;
 import com.anthonyponte.wallet.service.ICategoriaService;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Controller
 public class TransaccionController {
-
-  @Autowired private ITransaccionService<Transaccion> transaccionService;
-  @Autowired private ICuentaService<Cuenta> cuentaService;
-  @Autowired private ITipoService<Tipo> tipoService;
-  @Autowired private ICategoriaService<Categoria> categoriaService;
+  @Autowired
+  private ITransaccionService<Transaccion> transaccionService;
+  @Autowired
+  private ICuentaService<Cuenta> cuentaService;
+  @Autowired
+  private ITipoService<Tipo> tipoService;
+  @Autowired
+  private ICategoriaService<Categoria> categoriaService;
 
   @GetMapping("/transacciones/{idCuenta}")
   public String consultar(@PathVariable("idCuenta") Integer idCuenta, Model model) {
@@ -42,7 +42,6 @@ public class TransaccionController {
 
   @GetMapping("/transaccion/nuevo/{idCuenta}")
   public String registrar(@PathVariable("idCuenta") Integer idCuenta, Model model) {
-    System.out.println("com.anthonyponte.wallet.controller.TransaccionController.registrar() "+idCuenta);
     model.addAttribute("idCuenta", idCuenta);
     model.addAttribute("transaccion", new Transaccion());
     return "registrarTransaccion";

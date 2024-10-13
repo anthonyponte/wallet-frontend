@@ -7,6 +7,5 @@ import com.anthonyponte.wallet.entity.Usuario;
 
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
-
     public Usuario findByUsername(String username);
 }

@@ -14,13 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.anthonyponte.wallet.service.ICategoriaService;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Controller
 public class CategoriaController {
-
-  @Autowired private ICategoriaService<Categoria> service;
+  @Autowired
+  private ICategoriaService<Categoria> service;
 
   @GetMapping("/categorias")
   public String consultar(Model model, Pageable pageable) {

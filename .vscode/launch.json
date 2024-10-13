@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "WalletApplication",
+            "request": "launch",
+            "mainClass": "com.anthonyponte.wallet.WalletApplication",
+            "projectName": "wallet"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Open consultarCuentas.html",

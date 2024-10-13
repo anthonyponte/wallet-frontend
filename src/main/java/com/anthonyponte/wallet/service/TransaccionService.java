@@ -7,12 +7,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
+
 @Component
 public class TransaccionService implements ITransaccionService<Transaccion> {
-
   @Autowired
   private ITransaccionRepository _transaccionRepository;
 

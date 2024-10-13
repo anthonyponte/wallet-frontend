@@ -5,13 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Entity
 public class Cuenta {
-
-  public static long serialVersionUID = 1L;
+  public static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +19,8 @@ public class Cuenta {
   private double gastos;
   private double total;
 
-  public Cuenta() {}
+  public Cuenta() {
+  }
 
   public Cuenta(String nombre, double inicial, double ingresos, double gastos, double total) {
     this.nombre = nombre;

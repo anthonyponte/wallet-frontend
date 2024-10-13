@@ -5,10 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- * @param <T>
- */
 @Service
 public interface ICategoriaService<T> {
   Iterable<T> getAll();

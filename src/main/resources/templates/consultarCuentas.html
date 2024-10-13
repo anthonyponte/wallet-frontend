@@ -17,7 +17,7 @@
   <main class="flex-shrink-0">
     <div class="container mt-3">
       <div th:if="${textAlertSuccess != null}" th:insert="fragments/alert :: fragmentAlertSuccess"></div>
-      <a th:href="@{/cuenta/nuevo}" sec:authorize="hasAnyAuthority('USUARIO')" type="button" class="btn btn-primary mb-3"><i class="bi bi-plus"></i> Nueva
+      <a th:href="@{/cuenta/nuevo}" type="button" class="btn btn-primary mb-3" sec:authorize="isAuthenticated()"><i class="bi bi-plus"></i> Nueva
         cuenta</a>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-3">
         <div th:each="cuenta : ${listCuentas}" class="col">

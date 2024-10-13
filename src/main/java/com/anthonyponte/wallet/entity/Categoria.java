@@ -5,13 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Entity
 public class Categoria {
-
-  public static long serialVersionUID = 1L;
+  public static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +15,8 @@ public class Categoria {
 
   private String descripcion;
 
-  public Categoria() {}
+  public Categoria() {
+  }
 
   public Categoria(String descripcion) {
     this.descripcion = descripcion;

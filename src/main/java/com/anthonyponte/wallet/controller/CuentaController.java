@@ -17,12 +17,8 @@ import org.springframework.data.domain.Pageable;
 import com.anthonyponte.wallet.service.ICuentaService;
 
 
-/**
- * @author Anthony Ponte <anthonyponte.com>
- */
 @Controller
 public class CuentaController {
-
   @Autowired
   private ICuentaService<Cuenta> service;
 
