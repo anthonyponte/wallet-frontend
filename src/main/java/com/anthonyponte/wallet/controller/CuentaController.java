@@ -22,7 +22,7 @@ public class CuentaController {
   @Autowired
   private ICuentaService<Cuenta> service;
 
-  @GetMapping("/")
+  @GetMapping("/cuentas")
   public String consultar(Model model, Pageable pageable) {
     Page<Cuenta> listCuentas = service.getAll(pageable);
     model.addAttribute("listCuentas", listCuentas);

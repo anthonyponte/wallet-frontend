@@ -10,7 +10,6 @@
             </ul>
             <form class="form-inline">
                 <span class="navbar-text" th:if="${session.usuario != null}" th:text="${session.usuario.primerNombre}"></span>
-                <a class="btn btn-primary btn-sm" th:href="@{/index}" sec:authorize="isAnonymous()"><i class="bi bi-box-arrow-right"></i> Ingresar</a>
                 <a class="btn btn-success btn-sm" th:href="@{/usuario/nuevo}" sec:authorize="isAnonymous()"><i class="bi bi-person-plus"></i> Registrar</a>
                 <a class="btn btn-secondary btn-sm" th:href="@{/logout}" sec:authorize="isAuthenticated()"><i class="bi bi-box-arrow-left"></i> Cerrar Sesion</a>
             </form>

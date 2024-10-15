@@ -33,16 +33,19 @@ public class UsuarioController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(Authentication auth, HttpSession session) {
-        String username = auth.getName();
-
         if (session.getAttribute("usuario") == null) {
+            String username = auth.getName();
             Usuario usuario = usuarioService.getByUsername(username);
-            System.out.println(usuario);
-            session.setAttribute("usuario", usuario);
+            session.setAttribute("username", usuario);
         }
-        return "redirect:/";
+        return "redirect:/cuentas";
+    }
+
+    @GetMapping("/login")
+    public String ingresar() {
+        return "ingresarUsuario";
     }
 
     @RequestMapping("/usuario/nuevo")
@@ -61,7 +64,6 @@ public class UsuarioController {
         usuario.setEstado(1);
         usuarioService.create(usuario);
 
-        System.out.println(usuario);
         attributes.addFlashAttribute(
                 "textAlertSuccess", "Se guardo el usuario '" + usuario.getIdUsuario() + "'");
         return "redirect:/";

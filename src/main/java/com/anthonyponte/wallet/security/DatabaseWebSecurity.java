@@ -33,14 +33,13 @@ public class DatabaseWebSecurity {
     @Bean
     SecurityFilterChain getSecurityFilterChain(HttpSecurity security) throws Exception {
         security.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/usuario/**").permitAll()
-                .requestMatchers("/", "/cuenta/**").permitAll()
-                .requestMatchers("/transacciones/**", "/transaccion/**").permitAll()
-                .requestMatchers("/", "/cuenta/**", "/transacciones/**").hasAnyAuthority("USUARIO")
-                .requestMatchers("/categorias/**", "/categoria/**", "/tipo/**").hasAnyAuthority("ADMINISTRADOR")
+                .requestMatchers("/login").permitAll()
+                .requestMatchers("/cuentas/**", "/cuenta/**").hasAnyAuthority("USUARIO")
+                .requestMatchers("/transacciones/**", "/transaccion/**").hasAnyAuthority("USUARIO")
+                .requestMatchers("/categorias/**", "/categoria/**").hasAnyAuthority("ADMINISTRADOR")
                 .requestMatchers("/tipos/**", "/tipo/**").hasAnyAuthority("ADMINISTRADOR")
                 .anyRequest().authenticated());
-        security.formLogin(form -> form.permitAll());
+        security.formLogin(form -> form.loginPage("/login").permitAll());
         return security.build();
     }
 
