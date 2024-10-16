@@ -12,31 +12,34 @@ import org.springframework.data.domain.Pageable;
 @Component
 public class CategoriaService implements ICategoriaService<Categoria> {
   @Autowired
-  private ICategoriaRepository _categoriaRepository;
+  private ICategoriaRepository repository;
 
   @Override
   public Iterable<Categoria> getAll() {
-    return _categoriaRepository.findAll();
+    return repository.findAll();
   }
 
   @Override
   public Categoria getById(Integer id) {
-    Optional<Categoria> opt = _categoriaRepository.findById(id);
-    return opt.get();
+    Optional<Categoria> opt = repository.findById(id);
+    if (opt.isPresent()) {
+      return opt.get();
+    }
+    return null;
   }
 
   @Override
   public Categoria create(Categoria entity) {
-    return _categoriaRepository.save(entity);
+    return repository.save(entity);
   }
 
   @Override
   public void delete(Integer id) {
-    _categoriaRepository.deleteById(id);
+    repository.deleteById(id);
   }
 
   @Override
   public Page<Categoria> getAll(Pageable pageable) {
-    return _categoriaRepository.findAll(pageable);
+    return repository.findAll(pageable);
   }
 }

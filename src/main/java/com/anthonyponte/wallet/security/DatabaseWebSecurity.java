@@ -34,6 +34,7 @@ public class DatabaseWebSecurity {
     SecurityFilterChain getSecurityFilterChain(HttpSecurity security) throws Exception {
         security.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login").permitAll()
+                .requestMatchers("/usuario/**").permitAll()
                 .requestMatchers("/cuentas/**", "/cuenta/**").hasAnyAuthority("USUARIO")
                 .requestMatchers("/transacciones/**", "/transaccion/**").hasAnyAuthority("USUARIO")
                 .requestMatchers("/categorias/**", "/categoria/**").hasAnyAuthority("ADMINISTRADOR")

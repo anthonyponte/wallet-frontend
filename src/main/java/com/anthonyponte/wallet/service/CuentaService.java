@@ -12,31 +12,39 @@ import org.springframework.data.domain.Pageable;
 @Component
 public class CuentaService implements ICuentaService<Cuenta> {
   @Autowired
-  private ICuentaRepository _cuentaRepository;
+  private ICuentaRepository repository;
 
   @Override
   public Iterable<Cuenta> getAll() {
-    return _cuentaRepository.findAll();
+    return repository.findAll();
   }
 
   @Override
   public Cuenta getById(Integer id) {
-    Optional<Cuenta> opt = _cuentaRepository.findById(id);
-    return opt.get();
+    Optional<Cuenta> opt = repository.findById(id);
+    if (opt.isPresent()) {
+      return opt.get();
+    }
+    return null;
   }
 
   @Override
   public Cuenta create(Cuenta entity) {
-    return _cuentaRepository.save(entity);
+    return repository.save(entity);
   }
 
   @Override
   public void delete(Integer id) {
-    _cuentaRepository.deleteById(id);
+    repository.deleteById(id);
   }
 
   @Override
   public Page<Cuenta> getAll(Pageable pageable) {
-    return _cuentaRepository.findAll(pageable);
+    return repository.findAll(pageable);
+  }
+
+  @Override
+  public Iterable<Cuenta> getAllByIdUsuario(Integer idUsuario) {
+    return repository.findAllByIdUsuario(idUsuario);
   }
 }

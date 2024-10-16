@@ -16,4 +16,6 @@ public interface ICuentaService<T> {
   void delete(Integer id);
 
   Page<T> getAll(Pageable pageable);
+
+  Iterable<T> getAllByIdUsuario(Integer idUsuario);
 }

@@ -1,7 +1,5 @@
 package com.anthonyponte.wallet.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,16 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.anthonyponte.wallet.entity.Estado;
 import com.anthonyponte.wallet.entity.Usuario;
-import com.anthonyponte.wallet.service.IEstadoService;
 import com.anthonyponte.wallet.service.IUsuarioService;
-import com.google.common.collect.Lists;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -28,9 +22,6 @@ import jakarta.servlet.http.HttpSession;
 public class UsuarioController {
     @Autowired
     private IUsuarioService<Usuario> usuarioService;
-
-    @Autowired
-    private IEstadoService<Estado> estadoService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -76,11 +67,5 @@ public class UsuarioController {
         attributes.addFlashAttribute(
                 "textAlertSuccess", "Se guardo el usuario '" + usuario.getIdUsuario() + "'");
         return "redirect:/";
-    }
-
-    @ModelAttribute
-    public void cargar(Model model) {
-        List<Estado> listEstados = Lists.newArrayList(estadoService.getAll());
-        model.addAttribute("listEstados", listEstados);
     }
 }

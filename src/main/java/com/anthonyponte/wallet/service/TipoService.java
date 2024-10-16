@@ -12,31 +12,34 @@ import org.springframework.data.domain.Pageable;
 @Component
 public class TipoService implements ITipoService<Tipo> {
   @Autowired
-  private ITipoRepository _tipoRepository;
+  private ITipoRepository repository;
 
   @Override
   public Iterable<Tipo> getAll() {
-    return _tipoRepository.findAll();
+    return repository.findAll();
   }
 
   @Override
   public Tipo getById(Integer id) {
-    Optional<Tipo> opt = _tipoRepository.findById(id);
-    return opt.get();
+    Optional<Tipo> opt = repository.findById(id);
+    if (opt.isPresent()) {
+      return opt.get();
+    }
+    return null;
   }
 
   @Override
   public Tipo create(Tipo entity) {
-    return _tipoRepository.save(entity);
+    return repository.save(entity);
   }
 
   @Override
   public void delete(Integer id) {
-    _tipoRepository.deleteById(id);
+    repository.deleteById(id);
   }
 
   @Override
   public Page<Tipo> getAll(Pageable pageable) {
-    return _tipoRepository.findAll(pageable);
+    return repository.findAll(pageable);
   }
 }

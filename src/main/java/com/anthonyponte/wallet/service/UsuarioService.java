@@ -21,7 +21,10 @@ public class UsuarioService implements IUsuarioService<Usuario> {
     @Override
     public Usuario getById(Integer id) {
         Optional<Usuario> opt = repository.findById(id);
-        return opt.get();
+        if (opt.isPresent()) {
+            return opt.get();
+        }
+        return null;
     }
 
     @Override

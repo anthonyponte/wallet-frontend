@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cuenta {
@@ -19,15 +21,20 @@ public class Cuenta {
   private double gastos;
   private double total;
 
+  @OneToOne
+  @JoinColumn(name = "idUsuario")
+  private Usuario usuario;
+
   public Cuenta() {
   }
 
-  public Cuenta(String nombre, double inicial, double ingresos, double gastos, double total) {
+  public Cuenta(String nombre, double inicial, double ingresos, double gastos, double total, Usuario usuario) {
     this.nombre = nombre;
     this.inicial = inicial;
     this.ingresos = ingresos;
     this.gastos = gastos;
     this.total = total;
+    this.usuario = usuario;
   }
 
   public Integer getIdCuenta() {
@@ -78,21 +85,17 @@ public class Cuenta {
     this.total = total;
   }
 
+  public Usuario getUsuario() {
+    return usuario;
+  }
+
+  public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
+  }
+
   @Override
   public String toString() {
-    return "Cuenta{"
-        + "idCuenta="
-        + idCuenta
-        + ", nombre="
-        + nombre
-        + ", inicial="
-        + inicial
-        + ", ingresos="
-        + ingresos
-        + ", gastos="
-        + gastos
-        + ", total="
-        + total
-        + '}';
+    return "Cuenta [idCuenta=" + idCuenta + ", nombre=" + nombre + ", inicial=" + inicial + ", ingresos=" + ingresos
+        + ", gastos=" + gastos + ", total=" + total + ", usuario=" + usuario + "]";
   }
 }
