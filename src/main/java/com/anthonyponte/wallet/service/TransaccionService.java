@@ -1,4 +1,3 @@
-/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
 import com.anthonyponte.wallet.entity.Transaccion;
@@ -18,7 +17,7 @@ public class TransaccionService implements ITransaccionService<Transaccion> {
   }
 
   @Override
-  public Transaccion getById(Integer id) {
+  public Transaccion getById(Long id) {
     Optional<Transaccion> opt = repository.findById(id);
     if (opt.isPresent()) {
       return opt.get();
@@ -32,12 +31,12 @@ public class TransaccionService implements ITransaccionService<Transaccion> {
   }
 
   @Override
-  public void delete(Integer id) {
+  public void delete(Long id) {
     repository.deleteById(id);
   }
 
   @Override
-  public Iterable<Transaccion> getAll(Integer id) {
+  public Iterable<Transaccion> getAll(Long id) {
     return repository.findAll(id);
   }
 }

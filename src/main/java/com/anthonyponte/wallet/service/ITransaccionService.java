@@ -1,4 +1,3 @@
-/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
 import org.springframework.stereotype.Service;
@@ -7,11 +6,11 @@ import org.springframework.stereotype.Service;
 public interface ITransaccionService<T> {
   Iterable<T> getAll();
 
-  T getById(Integer id);
+  T getById(Long id);
 
   T create(T entity);
 
-  void delete(Integer id);
+  void delete(Long id);
 
-  Iterable<T> getAll(Integer id);
+  Iterable<T> getAll(Long id);
 }

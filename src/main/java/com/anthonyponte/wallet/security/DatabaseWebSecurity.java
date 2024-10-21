@@ -35,8 +35,8 @@ public class DatabaseWebSecurity {
         security.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/usuario/**").permitAll()
-                .requestMatchers("/cuentas/**", "/cuenta/**").hasAnyAuthority("USUARIO")
-                .requestMatchers("/transacciones/**", "/transaccion/**").hasAnyAuthority("USUARIO")
+                .requestMatchers("/cuentas/**", "/cuenta/**").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
+                .requestMatchers("/transacciones/**", "/transaccion/**").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
                 .requestMatchers("/categorias/**", "/categoria/**").hasAnyAuthority("ADMINISTRADOR")
                 .requestMatchers("/tipos/**", "/tipo/**").hasAnyAuthority("ADMINISTRADOR")
                 .anyRequest().authenticated());

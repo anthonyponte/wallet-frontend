@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 public interface IUsuarioService<T> {
   Iterable<T> getAll();
 
-  T getById(Integer id);
+  T getById(Long id);
 
   T create(T entity);
 
-  void delete(Integer id);
+  void delete(Long id);
 
   T getByUsername(String username);
 }

@@ -32,7 +32,7 @@ public class TransaccionController {
   private ICategoriaService<Categoria> categoriaService;
 
   @GetMapping("/transacciones/{idCuenta}")
-  public String consultar(@PathVariable("idCuenta") Integer idCuenta, Model model) {
+  public String consultar(@PathVariable("idCuenta") Long idCuenta, Model model) {
     List<Transaccion> listTransacciones = Lists.newArrayList(transaccionService.getAll(idCuenta));
     Cuenta cuenta = cuentaService.getById(idCuenta);
     model.addAttribute("listTransacciones", listTransacciones);
@@ -41,8 +41,9 @@ public class TransaccionController {
   }
 
   @GetMapping("/transaccion/nuevo/{idCuenta}")
-  public String registrar(@PathVariable("idCuenta") Integer idCuenta, Model model) {
-    model.addAttribute("idCuenta", idCuenta);
+  public String registrar(@PathVariable("idCuenta") Long idCuenta, Model model) {
+    Cuenta cuenta = cuentaService.getById(idCuenta);
+    model.addAttribute("cuenta", cuenta);
     model.addAttribute("transaccion", new Transaccion());
     return "registrarTransaccion";
   }

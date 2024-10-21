@@ -1,4 +1,3 @@
-/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
 import com.anthonyponte.wallet.entity.Categoria;
@@ -20,7 +19,7 @@ public class CategoriaService implements ICategoriaService<Categoria> {
   }
 
   @Override
-  public Categoria getById(Integer id) {
+  public Categoria getById(Long id) {
     Optional<Categoria> opt = repository.findById(id);
     if (opt.isPresent()) {
       return opt.get();
@@ -34,7 +33,7 @@ public class CategoriaService implements ICategoriaService<Categoria> {
   }
 
   @Override
-  public void delete(Integer id) {
+  public void delete(Long id) {
     repository.deleteById(id);
   }
 

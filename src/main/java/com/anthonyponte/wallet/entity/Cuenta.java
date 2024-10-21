@@ -13,7 +13,7 @@ public class Cuenta {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer idCuenta;
+  private Long idCuenta;
 
   private String nombre;
   private double inicial;
@@ -28,6 +28,17 @@ public class Cuenta {
   public Cuenta() {
   }
 
+  public Cuenta(Long idCuenta, String nombre, double inicial, double ingresos, double gastos, double total,
+      Usuario usuario) {
+    this.idCuenta = idCuenta;
+    this.nombre = nombre;
+    this.inicial = inicial;
+    this.ingresos = ingresos;
+    this.gastos = gastos;
+    this.total = total;
+    this.usuario = usuario;
+  }
+
   public Cuenta(String nombre, double inicial, double ingresos, double gastos, double total, Usuario usuario) {
     this.nombre = nombre;
     this.inicial = inicial;
@@ -37,11 +48,11 @@ public class Cuenta {
     this.usuario = usuario;
   }
 
-  public Integer getIdCuenta() {
+  public Long getIdCuenta() {
     return idCuenta;
   }
 
-  public void setIdCuenta(Integer idCuenta) {
+  public void setIdCuenta(Long idCuenta) {
     this.idCuenta = idCuenta;
   }
 

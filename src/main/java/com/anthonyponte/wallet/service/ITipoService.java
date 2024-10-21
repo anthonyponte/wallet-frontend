@@ -1,4 +1,3 @@
-/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
 import org.springframework.data.domain.Page;
@@ -9,11 +8,11 @@ import org.springframework.stereotype.Service;
 public interface ITipoService<T> {
   Iterable<T> getAll();
 
-  T getById(Integer id);
+  T getById(Long id);
 
   T create(T entity);
 
-  void delete(Integer id);
+  void delete(Long id);
 
   Page<T> getAll(Pageable pageable);
 }

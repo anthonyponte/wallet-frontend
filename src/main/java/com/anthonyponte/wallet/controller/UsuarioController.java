@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.anthonyponte.wallet.entity.Perfil;
 import com.anthonyponte.wallet.entity.Usuario;
 import com.anthonyponte.wallet.service.IUsuarioService;
 
@@ -62,6 +63,8 @@ public class UsuarioController {
 
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         usuario.setEstado(1);
+        usuario.getPerfiles().add(new Perfil(2L, "USUARIO"));
+
         usuarioService.create(usuario);
 
         attributes.addFlashAttribute(

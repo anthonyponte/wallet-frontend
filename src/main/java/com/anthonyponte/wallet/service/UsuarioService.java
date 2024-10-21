@@ -19,7 +19,7 @@ public class UsuarioService implements IUsuarioService<Usuario> {
     }
 
     @Override
-    public Usuario getById(Integer id) {
+    public Usuario getById(Long id) {
         Optional<Usuario> opt = repository.findById(id);
         if (opt.isPresent()) {
             return opt.get();
@@ -28,12 +28,12 @@ public class UsuarioService implements IUsuarioService<Usuario> {
     }
 
     @Override
-    public Usuario create(Usuario entity) {
-        return repository.save(entity);
+    public Usuario create(Usuario usuario) {
+        return repository.save(usuario);
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 

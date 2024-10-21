@@ -25,6 +25,11 @@ public class Estado {
         this.descripcion = descripcion;
     }
 
+    public Estado(Integer codigo, String descripcion) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+    }
+
     public Integer getIdEstado() {
         return idEstado;
     }

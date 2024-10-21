@@ -23,6 +23,7 @@
             <h5><i class="bi bi-plus"></i> Nueva transaccion</h5>
           </div>
           <div class="card-body">
+            <input th:field="*{cuenta.idCuenta}" type="hidden"/>
             <div class="form-floating mb-3">
               <div th:each="tipo : ${listTipos}" class="form-check">
                 <input th:field="*{tipo}" th:value="${tipo.idTipo}" class="form-check-input" type="radio" name="txtTipo"

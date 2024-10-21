@@ -44,14 +44,14 @@ public class TipoController {
   }
 
   @GetMapping("/tipo/editar/{idTipo}")
-  public String editar(@PathVariable("idTipo") Integer idTipo, Model model) {
+  public String editar(@PathVariable("idTipo") Long idTipo, Model model) {
     Tipo tipo = service.getById(idTipo);
     model.addAttribute("tipo", tipo);
     return "registrarTipo";
   }
 
   @GetMapping("/tipo/eliminar/{idTipo}")
-  public String eliminar(@PathVariable("idTipo") Integer idTipo, RedirectAttributes attr) {
+  public String eliminar(@PathVariable("idTipo") Long idTipo, RedirectAttributes attr) {
     service.delete(idTipo);
     attr.addFlashAttribute("textAlertSuccess", "Se elimino el tipo " + idTipo);
     return "redirect:/tipos";

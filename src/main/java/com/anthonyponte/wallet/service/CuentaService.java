@@ -1,4 +1,3 @@
-/** template created by jowsnunez --> https://www.github.com/JowsNunez * */
 package com.anthonyponte.wallet.service;
 
 import com.anthonyponte.wallet.entity.Cuenta;
@@ -20,7 +19,7 @@ public class CuentaService implements ICuentaService<Cuenta> {
   }
 
   @Override
-  public Cuenta getById(Integer id) {
+  public Cuenta getById(Long id) {
     Optional<Cuenta> opt = repository.findById(id);
     if (opt.isPresent()) {
       return opt.get();
@@ -34,17 +33,12 @@ public class CuentaService implements ICuentaService<Cuenta> {
   }
 
   @Override
-  public void delete(Integer id) {
+  public void delete(Long id) {
     repository.deleteById(id);
   }
 
   @Override
   public Page<Cuenta> getAll(Pageable pageable) {
     return repository.findAll(pageable);
-  }
-
-  @Override
-  public Iterable<Cuenta> getAllByIdUsuario(Integer idUsuario) {
-    return repository.findAllByIdUsuario(idUsuario);
   }
 }

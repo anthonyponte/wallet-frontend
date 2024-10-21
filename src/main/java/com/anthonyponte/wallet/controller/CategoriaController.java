@@ -44,7 +44,7 @@ public class CategoriaController {
   }
 
   @RequestMapping("/categoria/editar/{idCategoria}")
-  public String editar(@PathVariable("idCategoria") Integer idCategoria, Model model) {
+  public String editar(@PathVariable("idCategoria") Long idCategoria, Model model) {
     Categoria categoria = service.getById(idCategoria);
     model.addAttribute("categoria", categoria);
     return "registrarCategoria";
@@ -52,7 +52,7 @@ public class CategoriaController {
 
   @GetMapping("/categoria/eliminar/{idCategoria}")
   public String eliminar(
-      @PathVariable("idCategoria") Integer idCategoria, RedirectAttributes attr) {
+      @PathVariable("idCategoria") Long idCategoria, RedirectAttributes attr) {
     service.delete(idCategoria);
     attr.addFlashAttribute("textAlertSuccess", "Se elimino la categoria " + idCategoria);
     return "redirect:/categorias";

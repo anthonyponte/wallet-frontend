@@ -6,7 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import java.util.Date;
+
+import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -15,14 +16,14 @@ public class Transaccion {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer idTransaccion;
+  private Long idTransaccion;
 
   @OneToOne
   @JoinColumn(name = "idCategoria")
   private Categoria categoria;
 
   @DateTimeFormat(pattern = "yyyy-MM-dd")
-  private Date fecha;
+  private LocalDate fecha;
   private String descripcion;
 
   @OneToOne
@@ -38,13 +39,9 @@ public class Transaccion {
   public Transaccion() {
   }
 
-  public Transaccion(
-      Categoria categoria,
-      Date fecha,
-      String descripcion,
-      Tipo tipo,
-      double importe,
-      Cuenta cuenta) {
+  public Transaccion(Long idTransaccion, Categoria categoria, LocalDate fecha, String descripcion, Tipo tipo,
+      double importe, Cuenta cuenta) {
+    this.idTransaccion = idTransaccion;
     this.categoria = categoria;
     this.fecha = fecha;
     this.descripcion = descripcion;
@@ -53,11 +50,20 @@ public class Transaccion {
     this.cuenta = cuenta;
   }
 
-  public Integer getIdTransaccion() {
+  public Transaccion(Categoria categoria, LocalDate fecha, String descripcion, Tipo tipo, double importe, Cuenta cuenta) {
+    this.categoria = categoria;
+    this.fecha = fecha;
+    this.descripcion = descripcion;
+    this.tipo = tipo;
+    this.importe = importe;
+    this.cuenta = cuenta;
+  }
+
+  public Long getIdTransaccion() {
     return idTransaccion;
   }
 
-  public void setIdTransaccion(Integer idTransaccion) {
+  public void setIdTransaccion(Long idTransaccion) {
     this.idTransaccion = idTransaccion;
   }
 
@@ -69,11 +75,11 @@ public class Transaccion {
     this.categoria = categoria;
   }
 
-  public Date getFecha() {
+  public LocalDate getFecha() {
     return fecha;
   }
 
-  public void setFecha(Date fecha) {
+  public void setFecha(LocalDate fecha) {
     this.fecha = fecha;
   }
 

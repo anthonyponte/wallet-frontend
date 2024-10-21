@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.anthonyponte.wallet.entity.Estado;
 
 @Repository
-public interface IEstadoRepository extends JpaRepository<Estado, Integer> {
+public interface IEstadoRepository extends JpaRepository<Estado, Long> {
 }
