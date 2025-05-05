@@ -12,27 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.anthonyponte.wallet.service.ICategoriaService;
+import com.anthonyponte.wallet.service.CategoriaService;
 
 @Controller
+@RequestMapping("/categorias")
 public class CategoriaController {
   @Autowired
-  private ICategoriaService<Categoria> service;
+  private CategoriaService<Categoria> service;
 
-  @GetMapping("/categorias")
+  @GetMapping
   public String consultar(Model model, Pageable pageable) {
     Page<Categoria> listCategorias = service.getAll(pageable);
     model.addAttribute("listCategorias", listCategorias);
     return "consultarCategorias";
   }
 
-  @RequestMapping("/categoria/nuevo")
+  @RequestMapping("/nuevo")
   public String registrar(Model model) {
     model.addAttribute("categoria", new Categoria());
     return "registrarCategoria";
   }
 
-  @PostMapping("/categoria/guardar")
+  @PostMapping("/guardar")
   public String guardar(Categoria categoria, BindingResult result, RedirectAttributes attr) {
     if (result.hasErrors()) {
       return "registrarCategoria";
@@ -43,14 +44,14 @@ public class CategoriaController {
     return "redirect:/categorias";
   }
 
-  @RequestMapping("/categoria/editar/{idCategoria}")
+  @RequestMapping("/editar/{idCategoria}")
   public String editar(@PathVariable("idCategoria") Long idCategoria, Model model) {
     Categoria categoria = service.getById(idCategoria);
     model.addAttribute("categoria", categoria);
     return "registrarCategoria";
   }
 
-  @GetMapping("/categoria/eliminar/{idCategoria}")
+  @GetMapping("/eliminar/{idCategoria}")
   public String eliminar(
       @PathVariable("idCategoria") Long idCategoria, RedirectAttributes attr) {
     service.delete(idCategoria);

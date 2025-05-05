@@ -14,20 +14,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.anthonyponte.wallet.entity.Perfil;
 import com.anthonyponte.wallet.entity.Usuario;
-import com.anthonyponte.wallet.service.IUsuarioService;
+import com.anthonyponte.wallet.service.UsuarioService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/cuentas")
 public class UsuarioController {
     @Autowired
-    private IUsuarioService<Usuario> usuarioService;
+    private UsuarioService<Usuario> usuarioService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/")
+    @GetMapping
     public String index(Authentication auth, HttpSession session) {
         if (session.getAttribute("usuario") == null) {
             String username = auth.getName();
@@ -49,13 +50,13 @@ public class UsuarioController {
         return "redirect:/login";
     }
 
-    @RequestMapping("/usuario/nuevo")
+    @RequestMapping("/nuevo")
     public String registrar(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "registrarUsuario";
     }
 
-    @PostMapping("/usuario/guardar")
+    @PostMapping("/guardar")
     public String guardar(Usuario usuario, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             return "registrarUsuario";

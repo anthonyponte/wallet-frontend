@@ -1,44 +1,18 @@
 package com.anthonyponte.wallet.service;
 
-import com.anthonyponte.wallet.entity.Cuenta;
-import com.anthonyponte.wallet.repository.ICuentaRepository;
-import java.util.Optional;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-@Component
-public class CuentaService implements ICuentaService<Cuenta> {
-  @Autowired
-  private ICuentaRepository repository;
+@Service
+public interface CuentaService<T> {
+  Iterable<T> getAll();
 
-  @Override
-  public Iterable<Cuenta> getAll() {
-    return repository.findAll();
-  }
+  T getById(Long id);
 
-  @Override
-  public Cuenta getById(Long id) {
-    Optional<Cuenta> opt = repository.findById(id);
-    if (opt.isPresent()) {
-      return opt.get();
-    }
-    return null;
-  }
+  T create(T entity);
 
-  @Override
-  public Cuenta create(Cuenta entity) {
-    return repository.save(entity);
-  }
+  void delete(Long id);
 
-  @Override
-  public void delete(Long id) {
-    repository.deleteById(id);
-  }
-
-  @Override
-  public Page<Cuenta> getAll(Pageable pageable) {
-    return repository.findAll(pageable);
-  }
+  Page<T> getAll(Pageable pageable);
 }

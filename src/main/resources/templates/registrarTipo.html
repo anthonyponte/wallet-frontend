@@ -15,7 +15,7 @@
   <header th:insert="fragments/header :: navbar"></header>
 
   <main class="flex-shrink-0">
-    <form th:action="@{/tipo/guardar}" th:object="${tipo}" method="POST">
+    <form th:action="@{/tipos/guardar}" th:object="${tipo}" method="POST">
     <div class="container mt-3">
         <div th:if="${#fields.hasAnyErrors()}" th:insert="fragments/alert :: fragmentAlertDanger"></div>
         <div class="card w-50">

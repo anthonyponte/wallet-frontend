@@ -13,7 +13,7 @@
 
 <body>
   <div class="container min-vh-100 d-flex justify-content-center align-items-center">
-    <form th:action="@{/usuario/guardar}" th:object="${usuario}" method="POST">
+    <form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="POST">
 
       <div th:if="${#fields.hasAnyErrors()}" th:insert="fragments/alert :: fragmentAlertDanger"></div>
       

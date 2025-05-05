@@ -34,11 +34,11 @@ public class DatabaseWebSecurity {
     SecurityFilterChain getSecurityFilterChain(HttpSecurity security) throws Exception {
         security.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login").permitAll()
-                .requestMatchers("/usuario/**").permitAll()
-                .requestMatchers("/cuentas/**", "/cuenta/**").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
-                .requestMatchers("/transacciones/**", "/transaccion/**").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
-                .requestMatchers("/categorias/**", "/categoria/**").hasAnyAuthority("ADMINISTRADOR")
-                .requestMatchers("/tipos/**", "/tipo/**").hasAnyAuthority("ADMINISTRADOR")
+                .requestMatchers("/usuarios/**").permitAll()
+                .requestMatchers("/cuentas/**").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
+                .requestMatchers("/transacciones/**").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
+                .requestMatchers("/categorias/**").hasAnyAuthority("ADMINISTRADOR")
+                .requestMatchers("/tipos/**").hasAnyAuthority("ADMINISTRADOR")
                 .anyRequest().authenticated());
         security.formLogin(form -> form.loginPage("/login").permitAll());
         return security.build();

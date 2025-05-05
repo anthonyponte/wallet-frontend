@@ -22,7 +22,7 @@
           <h5 th:text="${cuenta.nombre}"></h5>
         </div>
         <div class="card-body">
-          <a th:href="@{/transaccion/nuevo/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-primary mb-3"><i class="bi bi-plus"></i> Nueva
+          <a th:href="@{/transacciones/nuevo/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-primary mb-3"><i class="bi bi-plus"></i> Nueva
             transaccion</a>
           <div class="table-responsive">
             <table class="table table-striped table-hover">
@@ -45,9 +45,9 @@
                   <td th:text="${transaccion.tipo.descripcion}"></td>
                   <td th:text="${transaccion.importe}"></td>
                   <td>
-                    <a th:href="@{/transaccion/editar(idTransaccion=${transaccion.idTransaccion})}" type="button" class="btn btn-warning"><i
+                    <a th:href="@{/transacciones/editar(idTransaccion=${transaccion.idTransaccion})}" type="button" class="btn btn-warning"><i
                         class="bi bi-pencil-fill"></i></a>
-                    <a th:href="@{/transaccion/eliminar(idTransaccion=${transaccion.idTransaccion})}" type="button" class="btn btn-danger"><i
+                    <a th:href="@{/transacciones/eliminar(idTransaccion=${transaccion.idTransaccion})}" type="button" class="btn btn-danger"><i
                         class="bi bi-trash-fill"></i></a>
                   </td>
                 </tr>

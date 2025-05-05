@@ -10,29 +10,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.anthonyponte.wallet.service.ITipoService;
+import com.anthonyponte.wallet.service.TipoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 @Controller
+@RequestMapping("/tipos")
 public class TipoController {
   @Autowired
-  private ITipoService<Tipo> service;
+  private TipoService<Tipo> service;
 
-  @GetMapping("/tipos")
+  @GetMapping
   public String consultar(Model model, Pageable pageable) {
     Page<Tipo> listTipos = service.getAll(pageable);
     model.addAttribute("listTipos", listTipos);
     return "consultarTipos";
   }
 
-  @RequestMapping("/tipo/nuevo")
+  @RequestMapping("/nuevo")
   public String registrar(Model model) {
     model.addAttribute("tipo", new Tipo());
     return "registrarTipo";
   }
 
-  @PostMapping("/tipo/guardar")
+  @PostMapping("/guardar")
   public String guardar(Tipo tipo, BindingResult result, RedirectAttributes attributes) {
     if (result.hasErrors()) {
       return "registrarTipo";
@@ -43,14 +44,14 @@ public class TipoController {
     return "redirect:/tipos";
   }
 
-  @GetMapping("/tipo/editar/{idTipo}")
+  @GetMapping("/editar/{idTipo}")
   public String editar(@PathVariable("idTipo") Long idTipo, Model model) {
     Tipo tipo = service.getById(idTipo);
     model.addAttribute("tipo", tipo);
     return "registrarTipo";
   }
 
-  @GetMapping("/tipo/eliminar/{idTipo}")
+  @GetMapping("/eliminar/{idTipo}")
   public String eliminar(@PathVariable("idTipo") Long idTipo, RedirectAttributes attr) {
     service.delete(idTipo);
     attr.addFlashAttribute("textAlertSuccess", "Se elimino el tipo " + idTipo);

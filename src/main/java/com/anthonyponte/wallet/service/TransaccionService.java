@@ -1,42 +1,16 @@
 package com.anthonyponte.wallet.service;
 
-import com.anthonyponte.wallet.entity.Transaccion;
-import com.anthonyponte.wallet.repository.ITransaccionRepository;
-import java.util.Optional;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Component
-public class TransaccionService implements ITransaccionService<Transaccion> {
-  @Autowired
-  private ITransaccionRepository repository;
+@Service
+public interface TransaccionService<T> {
+  Iterable<T> getAll();
 
-  @Override
-  public Iterable<Transaccion> getAll() {
-    return repository.findAll();
-  }
+  T getById(Long id);
 
-  @Override
-  public Transaccion getById(Long id) {
-    Optional<Transaccion> opt = repository.findById(id);
-    if (opt.isPresent()) {
-      return opt.get();
-    }
-    return null;
-  }
+  T create(T entity);
 
-  @Override
-  public Transaccion create(Transaccion entity) {
-    return repository.save(entity);
-  }
+  void delete(Long id);
 
-  @Override
-  public void delete(Long id) {
-    repository.deleteById(id);
-  }
-
-  @Override
-  public Iterable<Transaccion> getAll(Long id) {
-    return repository.findAll(id);
-  }
+  Iterable<T> getAll(Long id);
 }

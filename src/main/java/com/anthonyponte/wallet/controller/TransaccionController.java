@@ -14,24 +14,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.anthonyponte.wallet.service.ITransaccionService;
-import com.anthonyponte.wallet.service.ITipoService;
-import com.anthonyponte.wallet.service.ICuentaService;
-import com.anthonyponte.wallet.service.ICategoriaService;
+import com.anthonyponte.wallet.service.TransaccionService;
+import com.anthonyponte.wallet.service.TipoService;
+import com.anthonyponte.wallet.service.CuentaService;
+import com.anthonyponte.wallet.service.CategoriaService;
 
 @Controller
+@RequestMapping("/transacciones")
 public class TransaccionController {
   @Autowired
-  private ITransaccionService<Transaccion> transaccionService;
+  private TransaccionService<Transaccion> transaccionService;
   @Autowired
-  private ICuentaService<Cuenta> cuentaService;
+  private CuentaService<Cuenta> cuentaService;
   @Autowired
-  private ITipoService<Tipo> tipoService;
+  private TipoService<Tipo> tipoService;
   @Autowired
-  private ICategoriaService<Categoria> categoriaService;
+  private CategoriaService<Categoria> categoriaService;
 
-  @GetMapping("/transacciones/{idCuenta}")
+  @GetMapping("/{idCuenta}")
   public String consultar(@PathVariable("idCuenta") Long idCuenta, Model model) {
     List<Transaccion> listTransacciones = Lists.newArrayList(transaccionService.getAll(idCuenta));
     Cuenta cuenta = cuentaService.getById(idCuenta);
@@ -40,7 +42,7 @@ public class TransaccionController {
     return "consultarTransacciones";
   }
 
-  @GetMapping("/transaccion/nuevo/{idCuenta}")
+  @GetMapping("/nuevo/{idCuenta}")
   public String registrar(@PathVariable("idCuenta") Long idCuenta, Model model) {
     Cuenta cuenta = cuentaService.getById(idCuenta);
     model.addAttribute("cuenta", cuenta);
@@ -48,7 +50,7 @@ public class TransaccionController {
     return "registrarTransaccion";
   }
 
-  @PostMapping("/transaccion/guardar")
+  @PostMapping("/guardar")
   public String guardar(
       Transaccion transaccion, BindingResult result, RedirectAttributes attributes) {
     if (result.hasErrors()) {

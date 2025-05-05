@@ -16,31 +16,32 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 
-import com.anthonyponte.wallet.service.ICuentaService;
-import com.anthonyponte.wallet.service.IUsuarioService;
+import com.anthonyponte.wallet.service.CuentaService;
+import com.anthonyponte.wallet.service.UsuarioService;
 
 @Controller
+@RequestMapping("/cuentas")
 public class CuentaController {
   @Autowired
-  private ICuentaService<Cuenta> service;
+  private CuentaService<Cuenta> service;
 
   @Autowired
-  private IUsuarioService<Usuario> usuarioService;
+  private UsuarioService<Usuario> usuarioService;
 
-  @GetMapping("/cuentas")
+  @GetMapping
   public String consultar(Model model, Pageable pageable) {
     Page<Cuenta> listCuentas = service.getAll(pageable);
     model.addAttribute("listCuentas", listCuentas);
     return "consultarCuentas";
   }
 
-  @RequestMapping("/cuenta/nuevo")
+  @RequestMapping("/nuevo")
   public String registrar(Model model) {
     model.addAttribute("cuenta", new Cuenta());
     return "registrarCuenta";
   }
 
-  @PostMapping("/cuenta/guardar")
+  @PostMapping("/guardar")
   public String guardar(Cuenta cuenta, BindingResult result, RedirectAttributes attr, Authentication auth) {
     if (result.hasErrors()) {
       return "consultarCuentas";
@@ -55,14 +56,14 @@ public class CuentaController {
     return "redirect:/";
   }
 
-  @GetMapping("/cuenta/editar/{idCuenta}")
+  @GetMapping("/editar/{idCuenta}")
   public String editar(@PathVariable("idCuenta") Long idCuenta, Model model) {
     Cuenta cuenta = service.getById(idCuenta);
     model.addAttribute("cuenta", cuenta);
     return "registrarCuenta";
   }
 
-  @GetMapping("/cuenta/eliminar/{idCuenta}")
+  @GetMapping("/eliminar/{idCuenta}")
   public String eliminar(@PathVariable("idCuenta") Long idCuenta, RedirectAttributes attr) {
     service.delete(idCuenta);
     attr.addFlashAttribute("textAlertSuccess", "Se elimino la cuenta " + idCuenta);

@@ -1,18 +1,8 @@
 package com.anthonyponte.wallet.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.anthonyponte.wallet.entity.Estado;
-import com.anthonyponte.wallet.repository.IEstadoRepository;
-
-@Component
-public class EstadoService implements IEstadoService<Estado> {
-    @Autowired
-    private IEstadoRepository repository;
-
-    @Override
-    public Iterable<Estado> getAll() {
-        return repository.findAll();
-    }
+@Service
+public interface EstadoService<T> {
+    Iterable<T> getAll();
 }

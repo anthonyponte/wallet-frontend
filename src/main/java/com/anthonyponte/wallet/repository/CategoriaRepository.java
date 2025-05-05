@@ -1,9 +1,10 @@
 package com.anthonyponte.wallet.repository;
 
-import com.anthonyponte.wallet.entity.Tipo;
+import com.anthonyponte.wallet.entity.Categoria;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ITipoRepository extends JpaRepository<Tipo, Long> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 }

@@ -17,7 +17,7 @@
   <main class="flex-shrink-0">
     <div class="container mt-3">
       <div th:if="${textAlertSuccess != null}" th:insert="fragments/alert :: fragmentAlertSuccess"></div>
-      <a th:href="@{/cuenta/nuevo}" type="button" class="btn btn-primary mb-3" sec:authorize="isAuthenticated()"><i class="bi bi-plus"></i> Nueva
+      <a th:href="@{/cuentas/nuevo}" type="button" class="btn btn-primary mb-3" sec:authorize="isAuthenticated()"><i class="bi bi-plus"></i> Nueva
         cuenta</a>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-3">
         <div th:each="cuenta : ${listCuentas}" class="col">
@@ -52,9 +52,9 @@
             <div class="card-footer">
               <a th:href="@{/transacciones/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-success"><i
                   class="bi bi-table"></i> Transacciones</a>
-              <a th:href="@{/cuenta/editar/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-warning"><i
+              <a th:href="@{/cuentas/editar/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-warning"><i
                   class="bi bi-pencil-fill"></i></a>
-              <a th:href="@{/cuenta/eliminar/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-danger"><i
+              <a th:href="@{/cuentas/eliminar/{idCuenta}(idCuenta=${cuenta.idCuenta})}" type="button" class="btn btn-danger"><i
                   class="bi bi-trash-fill"></i></a>
             </div>
           </div>
