@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.0</version>
+        <version>3.4.5</version>
         <relativePath/>
     </parent>
     <groupId>com.anthonyponte</groupId>
-    <artifactId>wallet</artifactId>
+    <artifactId>wallet-frontend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>wallet</name>
+    <name>wallet-frontend</name>
     <description>Cartera de ingresos y egresos</description>
     <properties>
         <java.version>17</java.version>
